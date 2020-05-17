@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class FrontController extends Controller
 {
@@ -11,7 +12,8 @@ class FrontController extends Controller
         return view('front.login');
     }
     public function notice(){
-        return view('front.notice');
+        $notices=DB::table('notices')->get();
+        return view('front.notice',['notices'=>$notices]);
 
     }
     public function signup(){

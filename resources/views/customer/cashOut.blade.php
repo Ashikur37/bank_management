@@ -54,19 +54,23 @@
 
 <div class="container">
 
-			<form action="cashoutByCustomer.html" method="post">
+			<form action="{{route('send-money-cashout')}}" method="post">
+            @csrf
 				<div>
 					<br><br>
-				    <br><br><br><br>
+				    <input type="text" name="amount" id="phone" placeholder="Enter Amount of Money">
+					<br>
+					<input type="text" name="transaction_id" id="uname" placeholder="Enter Transaction Id">
 
 					<br>
-					<input type="text" name="username" id="uname" placeholder="Enter Transaction Id">
+					<input type="password" name="pin" id="email" placeholder="Enter Pin">
 					<br>
-					<input type="password" name="email" id="email" placeholder="Enter Pin">
-					<br>
+                       @foreach ($errors->all() as $error)
+                <li style="color:red">{{ $error }}</li>
+            @endforeach
 				</br>
 				<p id="crd"></p>
-				<input type="submit"  value="Receive" class="btn-edit" >
+				<input type="submit"  value="Send Money" class="btn-edit" >
 				<br/>
 			</form>
 		</div>

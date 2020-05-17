@@ -29,13 +29,13 @@
 					<div class="collapse navbar-collapse">
 						<ul class="nav navbar-nav navbar-right">
 							<li>
-								<a href="customerHome.html"> Home</a>
+								<a href="{{route('customer.home')}}"> Home</a>
 							</li>
 							<li>
-								<a href="changePassword.html">Change Password</a>
+								<a href="{{route('change.password')}}">Change Password</a>
 							</li>
 							<li>
-								<a href="login.html">Log out</a>
+								<a href="{{route('signout')}}">Log out</a>
 							</li>
 						</ul>
 					</div>
@@ -46,19 +46,20 @@
 <div class="container">
 			<img src="man.png">
 			<h2>Edit Your Profile</h2>
-			<form action="customerHome.html" method="post">
+			<form action="{{route('update-profile')}}" method="post">
+            @csrf
 				<div>
-				    <input type="text" name="phone" id="phone" placeholder="Enter Phone Number">
+				    <input value="{{$user->phone}}" type="text" name="phone" id="phone" placeholder="Enter Phone Number">
 					<br>
-					<input type="text" name="username" id="uname" placeholder="Enter Username">
+					<input value="{{$user->uname}}" type="text" name="uname" id="uname" placeholder="Enter Username">
 					<br>
-					<input type="text" name="email" id="email" placeholder="Enter Email">
+					<input value="{{$user->email}}" type="text" name="email" id="email" placeholder="Enter Email">
 					<br>
 				<div>
 					<p>Choose Gender
-						<input type="radio" name="gender" value="male" checked> Male
-						<input type="radio" name="gender" value="female"> Female
-						<input type="radio" name="gender" value="other"> Other
+						<input {{$user->gender=='male'?'checked':''}} type="radio" name="gender" value="male" > Male
+						<input  {{$user->gender=='female'?'checked':''}} type="radio" name="gender" value="female"> Female
+						<input {{$user->gender=='other'?'checked':''}} type="radio" name="gender" value="other"> Other
 					</p>
 					<br/></br>
 		        </div>

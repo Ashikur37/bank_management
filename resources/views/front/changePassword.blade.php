@@ -29,10 +29,10 @@
 					<div class="collapse navbar-collapse">
 						<ul class="nav navbar-nav navbar-right">
 							<li>
-								<a href="customerHome.html"> Home</a>
+								<a href="{{route('customer.home')}}"> Home</a>
 							</li>
 							<li>
-								<a href="login.html">
+								<a href="{{route('signout')}}">
 									Log out
 								</a>
 							</li>
@@ -46,7 +46,8 @@
 <div class="container">
 			<img src="man.png">
 			<h2>Change your password</h2>
-			<form action="customerProfile.html" method="post">
+			<form action="{{route('update.password')}}" method="post">
+            @csrf
 				<div>
 				    <input type="password" name="prePassword" id="prePassword" placeholder="Enter previous password">
 					<br>
@@ -55,7 +56,9 @@
 					<input type="password" name="conPassword" id="conPassword" placeholder="Re-enter the password">
 
 				</br>
-
+  @foreach ($errors->all() as $error)
+                <li style="color:red">{{ $error }}</li>
+            @endforeach
 
 				<p id="crd"></p>
 				<input type="submit"  value="Submit" class="btn-edit" >

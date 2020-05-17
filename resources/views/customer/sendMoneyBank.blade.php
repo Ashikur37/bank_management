@@ -29,15 +29,15 @@
 
 				</div>
 
-				<ul class="nav">
-					<li class="nav-item active">
-		        		<a class="nav-link" href="sendMoneyToAgent.html">Agent</a>
+			<ul class="nav">
+					<li class="nav-item ">
+		        		<a class="nav-link" href="{{route('customer.send.agent')}}">Agent</a>
 		      		</li>
-		     		<li class="nav-item">
-		        		<a class="nav-link" href="sendMoneyToBankAccount.html">Bank Account</a>
+		     		<li class="nav-item active">
+		        		<a class="nav-link" href="{{route('customer.send.bank')}}">Bank Account</a>
 		      		</li>
 		      		<li class="nav-item">
-		        		<a class="nav-link" href="sendMoneyToMobileNumber.html">Mobile Number</a>
+		        		<a class="nav-link" href="{{route('customer.send.mobile')}}">Mobile Number</a>
 		      		</li>
 				</ul>
 
@@ -45,36 +45,36 @@
 
 		</div>
 		<div>
-			<nav class="navbar navbar-default navbar-fixed">
-				<div class="container-fluid">
-					<div class="navbar-header">
-					</div>
-					<div class="collapse navbar-collapse">
-						<ul class="nav navbar-nav navbar-right">
-							<li>
-								<a href="login.html">
-									Log out
-								</a>
-							</li>
-						</ul>
-					</div>
-				</div>
-			</nav>
+			<ul class="nav">
+					<li class="nav-item ">
+		        		<a class="nav-link" href="{{route('customer.send.agent')}}">Agent</a>
+		      		</li>
+		     		<li class="nav-item active">
+		        		<a class="nav-link" href="{{route('customer.send.bank')}}">Bank Account</a>
+		      		</li>
+		      		<li class="nav-item">
+		        		<a class="nav-link" href="{{route('customer.send.mobile')}}">Mobile Number</a>
+		      		</li>
+				</ul>
 		</div>
 
 		<div class="container">
 			<h2>To Bank Account</h2>
-			<form action="sendMoneyToBankAccount.html" method="post">
+			<form action="{{route('send-money-bank')}}" method="post">
+            @csrf
 				<div>
 					<br><br>
-				    <input type="text" name="phone" id="phone" placeholder="Enter Amount of Money">
+				    <input type="text" name="amount" id="phone" placeholder="Enter Amount of Money">
 					<br>
-					<input type="text" name="username" id="uname" placeholder="Enter Bank's Name">
+					<input type="text" name="bank_name" id="uname" placeholder="Enter Bank's Name">
 					<br>
-					<input type="text" name="username" id="uname" placeholder="Enter Bank Account Number">
+					<input type="text" name="bank_account" id="uname" placeholder="Enter Bank Account Number">
 					<br>
-					<input type="password" name="email" id="email" placeholder="Enter Pin">
+					<input type="password" name="pin" id="email" placeholder="Enter Pin">
 					<br>
+                       @foreach ($errors->all() as $error)
+                <li style="color:red">{{ $error }}</li>
+            @endforeach
 				</br>
 				<p id="crd"></p>
 				<input type="submit"  value="Send Money" class="btn-edit" >

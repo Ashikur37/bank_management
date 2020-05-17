@@ -12,7 +12,7 @@
 <body>
 	<div class="container">
 		<img src="man.png">
-		<form method="POST" action="{{ route('login') }}">
+		<form method="POST" action="{{ route('signin_post') }}">
         @csrf
 			<div class="form-input">
 				<input type="text" id="un" name="email" value="{{ old('email') }}">
@@ -21,6 +21,9 @@
 				<input type="password" id="pass" name="password" placeholder="Enter Password">
 			</div>
 			</br><br>
+            @foreach ($errors->all() as $error)
+                <li style="color:red">{{ $error }}</li>
+            @endforeach
 			<input type="submit" value="LOGIN" class="btn-login" >
 			<br/>
 			<p id="crd"></p>

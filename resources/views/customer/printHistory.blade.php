@@ -37,35 +37,49 @@
     <!-- Light Bootstrap Table Core javascript and methods for Demo purpose -->
     <script src="assets/js/light-bootstrap-dashboard.js"></script>
     <script src="assets/js/chartist.min.js"></script>
+    <style type="text/css">
+            #color-bar {
+            display: inline-block;
+            width: 20px;
+            height: 20px;
+            margin-left: 5px;
+            margin-top: 5px;
+        }
+
+        @page {
+            size: auto;
+            margin: 0mm;
+        }
+
+        @page {
+            size: A4;
+            margin: 0;
+        }
+
+        @media print {
+            html,
+            body {
+                width: 210mm;
+                height: 287mm;
+            }
+            html {
+                overflow: scroll;
+                overflow-x: hidden;
+            }
+             ::-webkit-scrollbar {
+                width: 0px;
+                /* remove scrollbar space */
+                background: transparent;
+                /* optional: just make scrollbar invisible */
+            }
+
+    </style>
 </head>
 
-<body>
+<body onload="window.print();">
 
 
-    <div>
-        <nav class="navbar navbar-default navbar-fixed">
-            <div class="container-fluid">
-                <div class="navbar-header">
 
-                </div>
-                <div class="collapse navbar-collapse">
-                    <ul class="nav navbar-nav navbar-right">
-                        <li>
-                            <a href="{{route('customer.home')}}"> Home</a>
-                        </li>
-                        <li>
-                          <a class="nav-link" href="{{ route('logout') }}"
-                                       onclick="event.preventDefault();
-                                                     document.getElementById('logout-form').submit();">Log Out</a>
-                 <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
-                                        @csrf
-                                    </form>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-        </nav>
-    </div>
 
     <div>
         <h3 align="center">Customer Transactions</h3>
@@ -74,7 +88,7 @@
                 @csrf
                 <table>
                     <tr>
-                        <td>
+
                             <td><b>Tid</b></td>
                             <td><b>Transactor name</b></td>
                             <td><b>Transactor phone</b></td>
@@ -88,7 +102,6 @@
                     </tr>
                     @foreach($histories as $history)
                     <tr>
-                        <td><input value="{{$history->tid}}" name="tid[]" type="checkbox"></td>
                         <td><b>{{$history->tid}}</b></td>
                         <td><b>{{$user->uname}}</b></td>
                         <td><b>{{$user->phone}}</b></td>
@@ -115,11 +128,7 @@
 
             </div>
             <br/>
-            <div style="padding-left:300px">
-                <input type="submit" name="type" value="Delete" class="btn-delete"><br/>
-                <input type="submit" name="type" value="Print" class="btn-delete"><br/>
-                <p id="crd"></p>
-            </div>
+
         </form>
     </div>
 

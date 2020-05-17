@@ -42,7 +42,10 @@
 		<h1 class="header" align="center">Notifications </h1>
 		<marquee behavior="scroll" direction="up" scrollamount="1" onmouseover="this.setAttribute('scrollamount',0,0);this.stop(); onmouseout="this.setAttribute('scrollamount',2,0);this.start();" class="moving-body">
 			<script>
-					document.write('<p class="m-par"><b>There will be no transaction on this Saturday.</b></p>')
+            @foreach($notices as $notice)
+document.write('<p class="m-par"><b>{{$notice->short_title}}</b> {{$notice->long_title}}</p>')
+            @endforeach
+
 			</script>
 		</marquee>
 	</div>

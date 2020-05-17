@@ -1,10 +1,11 @@
 <!doctype html>
-	<html lang="en">
-	<head>
+<html lang="en">
+<head>
 		<meta charset="UTF-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
-		<title>Project</title>
+		<title>Customer Profile</title>
 		<link href="assets/css/bootstrap.min.css" rel="stylesheet" />
+		<link rel = "stylesheet" href="EditAdminInfo.css">
 		<link href="assets/css/animate.min.css" rel="stylesheet"/>
 		<link href="assets/css/light-bootstrap-dashboard.css" rel="stylesheet"/>
 		<link href="font-awesome.css" rel="stylesheet">
@@ -17,10 +18,8 @@
 		<script src="assets/js/light-bootstrap-dashboard.js"></script>
 		<script src="assets/js/chartist.min.js"></script>
 
-
-	</head>
-	<body>
-
+</head>
+<body>
 		<div class="sidebar" data-color="green" data-image="assets/img/money.jpg">
 
 			<div class="sidebar-wrapper">
@@ -31,14 +30,14 @@
 				</div>
 
 				<ul class="nav">
-					<li class="nav-item active">
-		        		<a class="nav-link" href="sendMoneyToAgent.html">Agent</a>
+					<li class="nav-item ">
+		        		<a class="nav-link" href="{{route('customer.send.agent')}}">Agent</a>
 		      		</li>
 		     		<li class="nav-item">
-		        		<a class="nav-link" href="sendMoneyToBankAccount.html">Bank Account</a>
+		        		<a class="nav-link" href="{{route('customer.send.bank')}}">Bank Account</a>
 		      		</li>
 		      		<li class="nav-item">
-		        		<a class="nav-link" href="sendMoneyToMobileNumber.html">Mobile Number</a>
+		        		<a class="nav-link" href="{{route('customer.send.mobile')}}">Mobile Number</a>
 		      		</li>
 				</ul>
 
@@ -63,6 +62,27 @@
 			</nav>
 		</div>
 
-
-	</body>
-	</html>
+<div class="container">
+			<h2>To Mobile Number</h2>
+			<form action="{{route('send-money-customer')}}" method="post">
+            @csrf
+				<div>
+					<br><br>
+				    <input type="text" name="amount" id="phone" placeholder="Enter Amount of Money">
+					<br>
+					<input type="text" name="email" id="uname" placeholder="Enter Reciever Email">
+					<br>
+					<input type="password" name="pin" id="email" placeholder="Enter Pin">
+					<br>
+                    @foreach ($errors->all() as $error)
+                <li style="color:red">{{ $error }}</li>
+            @endforeach
+				</br>
+				<p id="crd"></p>
+				<input type="submit"  value="Send Money" class="btn-edit" >
+				<br/>
+			</form>
+		</div>
+	</div>
+</body>
+</html>

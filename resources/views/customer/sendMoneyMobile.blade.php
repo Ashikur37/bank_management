@@ -30,14 +30,14 @@
 				</div>
 
 				<ul class="nav">
-					<li class="nav-item active">
-		        		<a class="nav-link" href="sendMoneyToAgent.html">Agent</a>
+					<li class="nav-item ">
+		        		<a class="nav-link" href="{{route('customer.send.agent')}}">Agent</a>
 		      		</li>
 		     		<li class="nav-item">
-		        		<a class="nav-link" href="sendMoneyToBankAccount.html">Bank Account</a>
+		        		<a class="nav-link" href="{{route('customer.send.bank')}}">Bank Account</a>
 		      		</li>
-		      		<li class="nav-item">
-		        		<a class="nav-link" href="sendMoneyToMobileNumber.html">Mobile Number</a>
+		      		<li class="nav-item active">
+		        		<a class="nav-link" href="{{route('customer.send.mobile')}}">Mobile Number</a>
 		      		</li>
 				</ul>
 
@@ -64,15 +64,19 @@
 
 <div class="container">
 			<h2>To Mobile Number</h2>
-			<form action="sendMoneyToMobileNumber.html" method="post">
+			<form action="{{route('send-money-mobile')}}" method="post">
+            @csrf
 				<div>
 					<br><br>
-				    <input type="text" name="phone" id="phone" placeholder="Enter Amount of Money">
+				    <input type="text" name="amount" id="phone" placeholder="Enter Amount of Money">
 					<br>
-					<input type="text" name="username" id="uname" placeholder="Enter Mobile Number">
+					<input type="text" name="phone" id="uname" placeholder="Enter Mobile Number">
 					<br>
-					<input type="password" name="email" id="email" placeholder="Enter Pin">
+					<input type="password" name="pin" id="email" placeholder="Enter Pin">
 					<br>
+                    @foreach ($errors->all() as $error)
+                <li style="color:red">{{ $error }}</li>
+            @endforeach
 				</br>
 				<p id="crd"></p>
 				<input type="submit"  value="Send Money" class="btn-edit" >
