@@ -41,6 +41,7 @@ Route::get('/transaction-history','CustomerController@transactionHistory')->name
 Route::post('/transaction-action','CustomerController@deleteTransaction')->name('transaction-action');
 Route::get('/signin','FrontController@login')->name('signin');
 Route::post('/signin','UserController@signin')->name('signin_post');
+Route::post('/signup-customer','UserController@Signupverify')->name('signup-customer');
 Route::get('/notice','FrontController@notice')->name('notice');
 Route::get('/signup','FrontController@signup')->name('signup');
 Route::get('/change-password','FrontController@changePassword')->name('change.password');

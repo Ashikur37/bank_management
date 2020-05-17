@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Str;
 use Illuminate\Support\Facades\DB;
 
 class UserController extends Controller
@@ -29,6 +30,44 @@ class UserController extends Controller
     public function signout(Request $request){
         return redirect('/');
     }
+    public function Signupverify(Request $req){
+
+        $validatedData = $req->validate([
+       'uname' => 'required|max:25|min:6|unique:users',
+       'email' => 'required|max:70|min:8 |unique:users|regex:/(.+)@(.+)\.(.+)/i',
+       'password' => 'required|max:12|min:6',
+      'cpassword' => 'required_with:password|same:password|min:6',
+       'phone' => 'required|max:16|min:11|unique:users',
+
+            ]);
+        $data=array();
+
+        $data['uname']=$req->uname;
+        $data['gender']=$req->gender;
+        $data['email']=$req->email;
+        $data['phone']=$req->phone;
+        $data['status']="active";
+        $data['password']=$req->password;
+        $data['gender']=$req->gender;
+        $data['balance']='300';
+        $data['status']='active';
+        $data['type']="customer";
+
+        if (1==1)
+        {
+
+               $data['image']="";
+               DB::table('users')->insert($data);
+                return redirect()->route('signin')->with('success' , 'Signup successfully done');
+
+        }
+       else
+           {
+              DB::table('users')->insert($data);
+               return redirect()->back();
+           }
+
+   }
     public function signin(Request $request){
 
         $user=User::where('email','=',$request->email)->where('password','=',$request->password)->first();

@@ -156,10 +156,10 @@
 <body>
 	<div class="container">
 		<img src="man.png">
-		<form method="POST" action="{{ route('register') }}">
+		<form method="POST" action="{{ route('signup-customer') }}">
           @csrf
 			<div class="form-input">
-				<input type="text" name="username" id="uname" placeholder="Enter Username">
+				<input type="text" name="uname" id="uname" placeholder="Enter Username">
 			</div>
             <div class="form-input">
 				<input type="email" name="email" placeholder="Enter Email">
@@ -168,15 +168,22 @@
 				<input type="password" name="password" placeholder="Enter Password">
 			</div>
             <div class="form-input">
-				<input type="password" name="password_confirmation" placeholder="Confirm Password">
+				<input type="password" name="cpassword" placeholder="Confirm Password">
 			</div>
 			<div class="form-input">
 				<input type="text" name="phone" placeholder="Enter Phone Number">
 			</div>
 			<div class="form-input">
-				<input type="text" name="address" placeholder="Enter Address">
+				<input checked type="radio" name="gender" value="male">
+                Male
+				<input type="radio" name="gender" value="female">
+                Female
+
 			</div>
 			<p id="crd"></p>
+             @foreach ($errors->all() as $error)
+                <li style="color:red">{{ $error }}</li>
+            @endforeach
 			<input type="submit"  value="Sign Up" class="btn-signup"><br/>
 			<a href="{{route('signin')}}">Already have an account? Login</a>
 		</form>
